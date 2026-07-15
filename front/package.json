@@ -1,0 +1,40 @@
+{
+  "name": "fams-nepu-front",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "FAMS-NEPU v2 前端：6 模块精简布局",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "postinstall": "node -e \"import('fs').then(({copyFileSync,mkdirSync})=>{const c=(a,b)=>{try{mkdirSync('public/luckysheet-assets',{recursive:true});copyFileSync(a,b);console.log('[postinstall] copy',a,'->',b);}catch(e){console.warn('[postinstall] skip',a,e.message);}};c('node_modules/jquery/dist/jquery.min.js','public/jquery.min.js');c('node_modules/jquery-mousewheel/jquery.mousewheel.min.js','public/jquery.mousewheel.min.js');c('node_modules/luckysheet/dist/luckysheet.umd.js','public/luckysheet.umd.js');c('node_modules/luckysheet/dist/css/luckysheet.css','public/luckysheet.css');c('node_modules/luckysheet/dist/plugins/plugins.css','public/luckysheet-plugins.css');c('node_modules/luckysheet/dist/plugins/css/pluginsCss.css','public/luckysheet-pluginsCss.css');}).catch(e=>console.warn('[postinstall] fs import failed',e.message))\""
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.0",
+    "axios": "^1.7.0",
+    "echarts": "^5.5.0",
+    "element-plus": "^2.7.0",
+    "lodash": "^4.18.1",
+    "jquery": "^2.2.4",
+    "jquery-mousewheel": "^3.1.13",
+    "dayjs": "^1.11.10",
+    "flatpickr": "^4.6.13",
+    "numeral": "^2.0.6",
+    "pako": "^1.0.11",
+    "luckysheet": "^2.1.13",
+    "pinia": "^2.1.0",
+    "vue": "^3.4.0",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "sass": "^1.74.0",
+    "typescript": "^5.4.0",
+    "unplugin-auto-import": "^0.17.0",
+    "unplugin-vue-components": "^0.26.0",
+    "vite": "^5.2.0",
+    "vue-tsc": "^2.0.0"
+  }
+}

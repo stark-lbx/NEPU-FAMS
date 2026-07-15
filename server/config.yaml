@@ -1,0 +1,137 @@
+# ==========================================
+# FAMS-NEPU 全局配置文件
+# 所有服务从此文件读取配置，禁止代码中硬编码
+# ==========================================
+
+# 数据库配置（MySQL 8.0 分库）
+database:
+  user_auth:
+    host: "127.0.0.1"
+    port: 3306
+    user: "root"
+    password: "123456"
+    database: "user_auth_db"
+    pool_size: 10
+    max_overflow: 20
+  asset_core:
+    host: "127.0.0.1"
+    port: 3306
+    user: "root"
+    password: "123456"
+    database: "asset_core_db"
+    pool_size: 10
+    max_overflow: 20
+  workflow:
+    host: "127.0.0.1"
+    port: 3306
+    user: "root"
+    password: "123456"
+    database: "workflow_db"
+    pool_size: 10
+    max_overflow: 20
+  repair:
+    host: "127.0.0.1"
+    port: 3306
+    user: "root"
+    password: "123456"
+    database: "repair_db"
+    pool_size: 10
+    max_overflow: 20
+  inventory:
+    host: "127.0.0.1"
+    port: 3306
+    user: "root"
+    password: "123456"
+    database: "inventory_db"
+    pool_size: 10
+    max_overflow: 20
+  file_storage:
+    host: "127.0.0.1"
+    port: 3306
+    user: "root"
+    password: "123456"
+    database: "file_db"
+    pool_size: 10
+    max_overflow: 20
+
+# Redis配置
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  password: ""
+  db: 0
+  max_connections: 50
+
+# etcd配置
+etcd:
+  host: "127.0.0.1"
+  port: 2379
+  ttl: 30
+
+# RabbitMQ配置
+rabbitmq:
+  host: "127.0.0.1"
+  port: 5672
+  user: "admin"
+  password: "123456"
+  virtual_host: "/"
+
+# JWT配置
+jwt:
+  secret_key: "fams-nepu-jwt-secret-key-2024"
+  algorithm: "HS256"
+  expire_minutes: 1440
+
+# 服务端口配置
+services:
+  gateway:
+    http_port: 9900
+    grpc_port: 9901
+  user_auth:
+    http_port: 9910
+    grpc_port: 9911
+  asset_core:
+    http_port: 9920
+    grpc_port: 9921
+  workflow:
+    http_port: 9930
+    grpc_port: 9931
+  repair:
+    http_port: 9940
+    grpc_port: 9941
+  inventory:
+    http_port: 9950
+    grpc_port: 9951
+  file_storage:
+    http_port: 9960
+    grpc_port: 9961
+  report:
+    http_port: 9970
+    grpc_port: 9971
+
+# 文件存储配置
+file_storage:
+  upload_dir: "D:/__lybix__/_Codes/FAMS-NEPU/uploads"
+  max_size_mb: 10
+  allowed_types:
+    - "jpg"
+    - "jpeg"
+    - "png"
+    - "gif"
+    - "pdf"
+    - "doc"
+    - "docx"
+    - "xls"
+    - "xlsx"
+
+# LLM配置（盘点差异比对用）
+llm:
+  api_url: "https://ark.cn-beijing.volces.com/api/v3/chat/completions"
+  api_key: ""
+  model: "doubao-pro-32k"
+
+# 日志配置
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/fams.log"

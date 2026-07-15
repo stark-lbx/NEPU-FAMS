@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAMS-NEPU 资产管理 v2</title>
+    <link rel="icon" href="/favicon.ico" />
+    <!--
+      协同盘点：Luckysheet 资源全部走 public 静态资源（不走 Vite 模块解析）。
+      原因：luckysheet 的 package.json#module 指向 luckysheet.esm.js（含 a.require 占位），
+      在 Vite dev / pre-bundle 阶段会拿到 a.require 抛错的版本，导致 ReferenceError。
+
+      加载顺序（关键！同步脚本按顺序执行）：
+        1) jquery          -> 挂 window.$ / window.jQuery
+        2) jquery-mousewheel -> 挂 $.fn.mousewheel
+        3) luckysheet.umd  -> 挂 window.luckysheet（其内部对 $ 的引用此时已就绪）
+        4) main.ts (module) -> Vue 应用启动
+    -->
+    <link rel="stylesheet" href="/luckysheet.css" />
+    <link rel="stylesheet" href="/luckysheet-plugins.css" />
+    <link rel="stylesheet" href="/luckysheet-pluginsCss.css" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- 1) jQuery 必须先于 Luckysheet UMD 加载（UMD 内部直接用 $ 标识符） -->
+    <script src="/jquery.min.js"></script>
+    <!-- 2) jquery-mousewheel（jQuery 插件，IIFE 自挂 $.fn.mousewheel） -->
+    <script src="/jquery.mousewheel.min.js"></script>
+    <!-- 3) Luckysheet UMD：同步执行，window.luckysheet 就绪 -->
+    <script src="/luckysheet.umd.js"></script>
+    <!-- 4) Vue 主入口（ESM 异步加载） -->
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
